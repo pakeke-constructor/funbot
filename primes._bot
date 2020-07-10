@@ -5,7 +5,7 @@
 `  This has literally taken me hours, no joke
 `   waste of time?? ...
 `
-`    h = half to avoid repeatitive calcs
+`    h = half to avoid repeatitive calcs (UNUSED, NEED TO FIX)
 `     n = prime number in question
 `     m = max recurse limit for prime n
 `
