@@ -1,4 +1,42 @@
 
+
+
+
+
+
+local PATH = "primes._bot"
+
+local pause_duration = 0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 require("commands.COMMANDS")
 
 
@@ -8,7 +46,7 @@ io.open('DEBUG.txt','w'):close()
 function _G.show(...)
     local t = {...}
     local f = io.open('DEBUG.txt', 'a')
-    for _,v in ipairs(t) do f:write('\n  ' .. tostring(v)) end
+    for _,v in ipairs(t) do f:write('\n  ' .. tostring(v)); print(tostring(v)) end
     f:close( )
 end
 
@@ -32,18 +70,6 @@ end
 --[[
 
 ]]
-
-
-
-
-
-
-local PATH = "primes._bot"
-
-local pause_duration = 0
-
-
-
 
 
 
