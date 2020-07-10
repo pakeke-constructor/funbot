@@ -34,6 +34,13 @@ for char in each(labels) do
     end)
 end
 
+-- numbers
+for x=0,9 do
+    cmd(tostring(x), function(BOT)
+        BOT.stack:push(x)
+    end)
+end
+
 -- Teleporter labels
 for char in each(teleporters) do
     cmd(char, function(BOT, map)
@@ -77,6 +84,13 @@ cmd("'", function(BOT)
     BOT.stack:push(tostring(q))
 end)
 
+cmd("$", function(BOT)
+    -- swaps top 2 stack values
+    local top,bot = topbot(BOT)
+    BOT.stack:push(top)
+    BOT.stack:push(bot)
+end)
+
 cmd("&", function(BOT)
     -- concatenates top 2 values
     local top = BOT.stack:pop()
@@ -88,8 +102,10 @@ end)
 cmd("=", function(BOT)
     local top = BOT.stack:pop()
     local bot = BOT.stack:pop()
-    BOT.hash[bot] = top
-    BOT.stack:push(top)
+    if bot and top then
+        BOT.hash[bot] = top
+        BOT.stack:push(top)
+    end
 end)
 
 cmd("*", function(BOT)
@@ -100,7 +116,7 @@ cmd("*", function(BOT)
 end)
 
 cmd("/", function(BOT)
-    local bot,top = topbot(BOT)
+    local top,bot = topbot(BOT)
     if type(bot) == "number" and type(top) == "number" then
         BOT.stack:push(bot / top)
     end
@@ -114,11 +130,12 @@ cmd("\\", function(BOT)
 end)
 
 cmd("-", function(BOT)
-    local bot,top = topbot(BOT)
+    local top,bot = topbot(BOT)
     if type(bot) == "number" and type(top) == "number" then
         BOT.stack:push(bot - top)
     end
 end)
+
 
 cmd("+", function(BOT)
     local bot,top = topbot(BOT)
@@ -126,6 +143,7 @@ cmd("+", function(BOT)
         BOT.stack:push(bot + top)
     end
 end)
+
 
 -- power function
 cmd("!", function(BOT)
@@ -137,11 +155,22 @@ end)
 
 -- mod function
 cmd("%", function(BOT)
-    local bot,top = topbot(BOT)
+    local top,bot = topbot(BOT)
     if type(bot) == "number" and type(top) == "number" then
         BOT.stack:push(bot % top)
     end
 end)
+
+
+cmd("?", function(BOT)
+    -- pushes hash value of top stack value, and pops top stack value
+    local top = BOT.stack:pop()
+    local to_push = BOT.hash[top]
+    if not (to_push == nil) then
+        BOT.stack:push(to_push)
+    end
+end)
+
 
 -- turning clockwise
 cmd("(", function(BOT)
@@ -193,6 +222,10 @@ cmd("[", function(BOT)
     local dupe = BOT.stack:pop()
     BOT.stack:push(dupe)
     BOT.stack:push(dupe)
+end)
+
+cmd("]", function(BOT)
+    BOT.stack:pop( )
 end)
 
 cmd(":", function(BOT)
