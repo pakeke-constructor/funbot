@@ -15,9 +15,12 @@ each bot has a stack, a boolean pocket, and a hashtable
 
 
 
-any lowercase alphabet character is a label, except v
+*  any digit pushes that digit onto the stack
 
-any uppercase alphabet character is a teleporter, except V
+*  any lowercase alphabet character pushes that character onto the stack, except v
+
+*  any uppercase alphabet character is a teleporter, except V
+
 
 
 =  pops 2 values off stack,  bot.hash[bottom] = top.
