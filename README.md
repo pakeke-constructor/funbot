@@ -72,4 +72,28 @@ $   swaps top 2 stack values
 
 _   lets up-down travelling bots through ONLY if bool pocket == true. Else, bots bounce off
 ```
+# examples:
+Code examples:
+For these code examples, assume the bot (@) starts by travelling right.  -->
+```
+@ i1= 
+`sets bot.hash["i"] = 1
 
+@ i?
+`pushes onto stack bot.hash["i"]  --->  1
+
+@ q?q?+q$=
+`doubles the value of q
+
+@ fo&o&99+1+=
+`sets bot.hash["foo"] = 19
+
+
+@ v              
+  )| tr&u&e& "
+  >  fa&l&s&e& "
+` if statement. If bool pocket is true, prints "true"; else "false".
+ 
+ 
+@ Q he&l&l&o &w&o&r&l&d& " Q
+` repeatedly prints "helloworld"
