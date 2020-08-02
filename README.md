@@ -95,5 +95,5 @@ For these code examples, assume the bot (@) starts by travelling right.  -->
 ` if statement. If bool pocket is true, prints "true"; else "false".
  
  
-@ Q he&l&l&o &w&o&r&l&d& " Q
+Q @ he&l&l&o &w&o&r&l&d& " Q
 ` repeatedly prints "helloworld"
