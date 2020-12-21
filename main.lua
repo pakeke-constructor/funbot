@@ -1,58 +1,30 @@
 
-
-
-
-
-
-local PATH = "primes._bot"
-
-local pause_duration = 0
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--love.graphics.setDefaultFilter("nearest","nearest")
 
 require("commands.COMMANDS")
 
 
+local output = { }
 
 io.open('DEBUG.txt','w'):close()
 -- HOMEMADE PRINT
 function _G.show(...)
     local t = {...}
     local f = io.open('DEBUG.txt', 'a')
-    for _,v in ipairs(t) do f:write('\n  ' .. tostring(v)); print(tostring(v)) end
+    for _,v in ipairs(t) do
+        f:write('\n  ' .. tostring(v))
+        table.insert(output, 1, v)
+        output[30] = nil
+    end
     f:close( )
 end
+
 
 function string:at(i)
     return self:sub(i,i)
 end
+
+
 
 local each = function(str)
     assert(type(str) == "string", "Not string!")
@@ -70,6 +42,23 @@ end
 --[[
 
 ]]
+
+
+
+
+local PATH = "primes._bot"
+
+local pause_duration = 0
+
+
+local paused=false
+
+function love.keypressed(l)
+    if l=='p'then
+        paused = not paused
+    end
+end
+
 
 
 
@@ -112,12 +101,11 @@ end
 
 
 
-
 local is_paused = true
 local ctr = 1
 
 function love.update(dt)
-    if not is_paused then
+    if not (paused or is_paused) then
         is_paused = true
         ctr = pause_duration
         for _,b in ipairs(BOT.bots) do
@@ -143,12 +131,36 @@ end
 
 local lg = love.graphics
 
+local TX,TY = 100,100
+local SCALE = 1
+
+
+function love.wheelmoved(_,y)
+    SCALE = SCALE + y/100
+end
+
+function love.mousemoved(x,y,dx,dy)
+    if love.mouse.isDown(1) then
+        TX = TX + dx/10
+        TY = TY + dy/10
+    end
+end
+
+
+
 function love.draw()
-    lg.translate(100,100)
+    lg.setColor(1,1,0)
+    lg.push()
+    lg.scale(1.6)
+    lg.print(PATH, 10,10)
+    lg.pop()
+    lg.setColor(1,1,1)
+    lg.scale(SCALE)
+    lg.translate(TX,TY)
     lg.setColor(1,1,1)
 
-    local mx, my =  math.floor(love.mouse.getX()/10)*10 - 100, math.floor(love.mouse.getY()/10)*10 - 100
-    love.graphics.rectangle("line", mx, my+2, 10,10)
+    --local mx, my =  math.floor(love.mouse.getX()/10)*10 - 100, math.floor(love.mouse.getY()/10)*10 - 100
+    --love.graphics.rectangle("line", mx, my+2, 10,10)
 
     for y=1,map.height do
         for x = 1, map.width do
@@ -160,8 +172,22 @@ function love.draw()
     lg.setColor(1,0,0)
     for _, b in ipairs(BOT.bots) do
         lg.print("@",(b.x*10)-2, (b.y*10)-1)
+
+        local X =  love.graphics.getWidth()/2-100
+        lg.setColor(0,1,0)
+        lg.print("BOT->STACK", X, 40)
+        local maxy=40
         for q,val in ipairs(b.stack) do
-            lg.print(tostring(val), love.graphics.getWidth()-100, (q*10) + 50)
+            maxy = math.max(q*12 + 50, maxy)
+            lg.print(tostring(val), X, (q*12) + 50)
+        end
+        lg.setColor(1,0,0,0.3)
+        lg.line((b.x*10), (b.y*10)+1, X, maxy+10)
+
+        lg.setColor(0,0,1)
+        lg.print("OUTPUT->", X+100, 40)
+        for ii, op in ipairs(output) do
+            lg.print(tostring(op), X+100, (ii*12) + 50)
         end
     end
 end
@@ -173,3 +199,5 @@ function love.keypressed()
     show(inspect(map))
 end
 ]]
+
+

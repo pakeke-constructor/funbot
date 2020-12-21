@@ -1,15 +1,24 @@
 `
 `
 `  prime number gen
-` 
+`  
+`  This has literally taken me hours, no joke
+`   waste of time?? ...
 `
-Rv
-v<]]]]]   ]]]]]]]]]<
+`    h = half to avoid repeatitive calcs
+`     n = prime number in question
+`     m = max recurse limit for prime n
+`
+`
+
+ v]]]]]]]]]]]]]]]]]<
+Rv >]]]]]]]]]]]]]]]^
+v< ^]]]]]]]]]]]]]]]<
 >nn?2+=n?1-m$=S
 Si1=v         >?"  ^
    L>ii?1+=  vn
    ).,:0%?i?n<_
    )|i?1+m?;. )v
    >>>     v   >L
->v
-@>n1=      R
+>v         > v
+@>2"12/h$=n1=R

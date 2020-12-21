@@ -15,12 +15,9 @@ each bot has a stack, a boolean pocket, and a hashtable
 
 
 
-*  any digit pushes that digit onto the stack
+any lowercase alphabet character is a label, except v
 
-*  any lowercase alphabet character pushes that character onto the stack, except v
-
-*  any uppercase alphabet character is a teleporter, except V
-
+any uppercase alphabet character is a teleporter, except V
 
 
 =  pops 2 values off stack,  bot.hash[bottom] = top.
@@ -31,7 +28,7 @@ v  turn bot down (V also works)
 <  turn bot left
 ^  turn bot up
 
-"   outputs top stack value to  `print` and pops
+"   outputs top stack value to  `print`
 '   converts top stack value to string, if possible
 
 &   character/string concatenation. Takes top 2 values, and concatenates them
@@ -42,7 +39,7 @@ $   swaps top 2 stack values
         If not correct type, nothing happens
 *   times operator
 /   division
-\   floor   (only pops 1 value!)
+\   floor
 -   minus
 +   plus
 !   power
@@ -72,28 +69,3 @@ $   swaps top 2 stack values
 
 _   lets up-down travelling bots through ONLY if bool pocket == true. Else, bots bounce off
 ```
-# examples:
-Code examples:
-For these code examples, assume the bot (@) starts by travelling right.  -->
-```
-@ i1= 
-`sets bot.hash["i"] = 1
-
-@ i?
-`pushes onto stack bot.hash["i"]  --->  1
-
-@ q?q?+q$=
-`doubles the value of q
-
-@ fo&o&99+1+=
-`sets bot.hash["foo"] = 19
-
-
-@ v              
-  )| tr&u&e& "
-  >  fa&l&s&e& "
-` if statement. If bool pocket is true, prints "true"; else "false".
- 
- 
-Q @ he&l&l&o &w&o&r&l&d& " Q
-` repeatedly prints "helloworld"

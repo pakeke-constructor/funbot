@@ -1,0 +1,38 @@
+
+
+` quadratic eqn solver
+` 
+`  put quadratic in form  0 = ax^2 + bx + c
+`
+
+>v
+@
+v<
+
+` a is 2 here
+a  
+2
+=
+
+` b is -9
+b
+0
+9
+-
+=
+
+
+` c is 4
+c
+4
+=
+>]]]]]]]]] U
+U k b?2! a?c?*4*-12/!=]]]]Q
+Q 0b?-k?+a?2*/"v
+v "/*2?a-?k-?b0<
+
+v  <
+> v
+    
+>  ^
+^ <

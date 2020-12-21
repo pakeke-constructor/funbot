@@ -1,6 +1,9 @@
 
 
+
+
 local cmd = require("commands.command")
+
 
 -- Character iteration function for strings
 local each = function(str)
@@ -20,7 +23,7 @@ end
 local topbot = function(BOT)
     local top = BOT.stack:pop()
     local bot = BOT.stack:pop()
-    return top,bot
+    return top, bot
 end
 
 
@@ -65,13 +68,6 @@ cmd("v", function(BOT) BOT.vx = 0; BOT.vy = 1 end)
 cmd("V", function(BOT) BOT.vx = 0; BOT.vy = 1 end)
 cmd("^", function(BOT) BOT.vx = 0; BOT.vy = -1 end)
 
-cmd("!", function(BOT)
-    -- to the power of
-    local st = BOT.stack
-    local top = st:pop()
-    local bot = st:pop()
-    st:push( bot ^ top )
-end)
 
 cmd('"', function(BOT)
     -- shows item in terminal
@@ -147,7 +143,7 @@ end)
 
 -- power function
 cmd("!", function(BOT)
-    local bot,top = topbot(BOT)
+    local top, bot = topbot(BOT)
     if type(bot) == "number" and type(top) == "number" then
         BOT.stack:push(bot ^ top)
     end

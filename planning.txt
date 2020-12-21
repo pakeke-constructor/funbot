@@ -39,6 +39,8 @@ v  turn bot down (V also works)
 
 &   character/string concatenation. Takes top 2 values, and concatenates them
 
+$   swaps top 2 stack values
+
         Each operator pops the top two values off the stack, and pushes the result onto the stack.
         If not correct type, nothing happens
 *   times operator
@@ -49,14 +51,19 @@ v  turn bot down (V also works)
 !   power
 %   modulus
 
+
+?   pops 1 value off stack, gets hashtable value of that value.
+
+
 (   turns bot 1 unit clockwise
 )   turns bot 1 unit anticlockwise
 
 [   duplicates top stack value
 ]   pops top stack value
 
-{   starts long comment
-}   ends long comment
+
+`   starts a comment- must be used as first character on line!!!
+
 
 #   trampoline: if bot.bool == true, jumps over next cell. If jumps to edge of map, bounce off.
 
