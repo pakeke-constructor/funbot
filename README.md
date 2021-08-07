@@ -1,6 +1,10 @@
 # funbot
 lightweight esoteric programming language based on befunge
 
+Prime generator in this language:
+https://youtu.be/7OqzVtErkdo
+
+
 Rules:
 ```
 @ is a bot, runs commands. Bots will always start moving upwards
